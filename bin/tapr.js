@@ -9,7 +9,8 @@ var VERSION = '0.1.3';
 prog
   .version(VERSION)
   .usage('[options] <path ...>')
-  .option('    --no-color', 'Run without colorization')
+  .option('--no-color', 'Run without colorization')
+  .option('--timeout [ms]' , 'Individual test file timeout (ms; default=10000)', 10000)
   .parse(process.argv);
 
 
@@ -23,7 +24,7 @@ var path = require("path");
 var Runner = require("../lib/tapper");
 var TapProducer = require("tap").Producer;
 
-var options = { color: prog.color };
+var options = { color: prog.color, timeout: +prog.timeout || 10000 };
 var r = new Runner(prog.args, options);
 var colorize = prog.color;
 
