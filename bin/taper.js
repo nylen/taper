@@ -21,7 +21,7 @@ if (!prog.args.length) { // no files specified, show help
 }
 
 var path = require("path");
-var Runner = require("../lib/tapper");
+var Runner = require("../lib/taper");
 var TapProducer = require("tap").Producer;
 
 var options = { color: prog.color, timeout: +prog.timeout || 10000 };
