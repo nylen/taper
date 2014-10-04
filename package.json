@@ -25,7 +25,7 @@
   "devDependencies": {
   },
   "scripts": {
-    "test": "bin/tapr.js test"
+    "test": "bin/tapr.js --timeout 1000 test"
   },
   "directories" : { 
     "lib" : "./lib",

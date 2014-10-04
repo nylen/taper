@@ -20,14 +20,14 @@ test('another simple test', function (t) {
 });
 
 test('showing some deeper stderr logging by inspect on tap.test', function (t) {
-  console.error('on stderr:', t);
+  console.error('on stderr:', t.conf);
   t.ok(true);
   t.equal('foo', 'foo');
   t.end();
 });
 
 test('showing some deeper stdout logging by inspect on tap.test', function (t) {
-  console.log('on stdout:', t);
+  console.log('on stdout:', t.conf);
   t.ok(true);
   t.equal('foo', 'foo');
   t.end();
