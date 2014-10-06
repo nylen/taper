@@ -4,10 +4,8 @@ var sprintf = require('sprintf').sprintf;
 var clc = require('cli-color');
 var prog = require('commander');
 
-var VERSION = '0.1.3';
-
 prog
-  .version(VERSION)
+  .version(require('../package.json').version)
   .usage('[options] <path ...>')
   .option('--no-color', 'Run without colorization')
   .option('--timeout [ms]' , 'Individual test file timeout (ms; default=10000)', 10000)
