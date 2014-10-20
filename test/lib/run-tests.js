@@ -42,7 +42,10 @@ function removePathsAndLineNumbers(f, s) {
 
 function processFile(f) {
     tape(f, function(t) {
-        var actual   = {},
+        var actual   = {
+                stdout : '',
+                stderr : ''
+            },
             expected = {
                 stdout : '',
                 stderr : ''
