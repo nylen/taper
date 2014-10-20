@@ -27,10 +27,16 @@ function getExpectedFilename(f, k) {
         path.basename(f) + '.' + k + '.txt');
 }
 
-function removePathsAndLineNumbers(s) {
-    return s.toString()
-        .replace(new RegExp('/.*/', 'g'), '<FILE_PATH>/')
-        .replace(/\d+:\d+(\)?)$/gm, '<LINE:COL>\1');
+function removePathsAndLineNumbers(f, s) {
+    s = s.toString();
+
+    if (!/\.tap$/.test(f)) {
+        s = s
+            .replace(new RegExp('/.*/', 'g'), '<FILE_PATH>/')
+            .replace(/\d+:\d+(\)?)$/gm, '<LINE:COL>$1');
+    }
+
+    return s;
 }
 
 
@@ -52,10 +58,10 @@ function processFile(f) {
 
         var taper = cp.spawn('node', [bin, '--timeout', '1000', f], { stdio : 'pipe' });
         taper.stdout.pipe(concat(function(stdout) {
-            actual.stdout = removePathsAndLineNumbers(stdout);
+            actual.stdout = removePathsAndLineNumbers(f, stdout);
         }));
         taper.stderr.pipe(concat(function(stderr) {
-            actual.stderr = removePathsAndLineNumbers(stderr);
+            actual.stderr = removePathsAndLineNumbers(f, stderr);
         }));
         taper.on('close', function(code, signal) {
             if (expected.fail) {
