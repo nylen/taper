@@ -81,8 +81,14 @@ function formatFailedAsserts(details) {
       msg = sprintf('Error thrown: %s "%s" \n\tcode: %s, errno: %s\n', x.type, x.message, x.code, x.errno);
       stack = '  ' + x.stack.join('\n  '); // indent stack lines by two spaces
     } else { //normal assertion failure
-      msg = sprintf('Assert: "%s", \n\t found: %s \n\twanted: %s', x.name, x.found, x.wanted);
-      stack = sprintf('\n\t%s:%s', x.file, x.line);
+      msg = sprintf('Assert: "%s", \n\t found: %s \n\twanted: %s',
+        x.name,
+        (typeof x.found  == 'undefined' ? x.actual   : x.found),
+        (typeof x.wanted == 'undefined' ? x.expected : x.wanted));
+      if (!x.at) {
+        x.at = x.file + ':' + x.line;
+      }
+      stack = '\n\t' + x.at;
     }
     if (colorize) msg = clc.red(msg);
     return msg + stack;
