@@ -77,7 +77,7 @@ function processFile(f) {
             }
 
             for (var k in actual) {
-                t.equal(actual[k], expected[k], k + ' matches expected');
+                t.equal(actual[k].trim(), expected[k].trim(), k + ' matches expected');
             }
 
             t.end();
