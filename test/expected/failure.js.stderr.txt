@@ -1,0 +1,9 @@
+I will log to stderr here.
+[34m# this should fail[39m
+[31mnot ok 1 should be equal[39m
+
+[31mAssert: "should be equal", 
+	 found: true 
+	wanted: false[39m
+	<FILE_PATH>/failure.js:5
+
