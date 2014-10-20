@@ -1,0 +1,13 @@
+
+<FILE_PATH>/fail-throws.js:7
+throw new Error('This is an unhandled error');
+      ^
+Error: This is an unhandled error
+    at Object.<anonymous> (<FILE_PATH>/fail-throws.js:<LINE:COL>)
+    at Module._compile (module.js:<LINE:COL>)
+    at Object.Module._extensions..js (module.js:<LINE:COL>)
+    at Module.load (module.js:<LINE:COL>)
+    at Function.Module._load (module.js:<LINE:COL>)
+    at Module.runMain (module.js:<LINE:COL>)
+    at process.startup.processNextTick.process._tickCallback (node.js:<LINE:COL>)
+
