@@ -1,4 +1,4 @@
-# Taper
+# taper [![Build status](https://img.shields.io/travis/nylen/taper.svg?style=flat)](https://travis-ci.org/nylen/taper) [![npm package](http://img.shields.io/npm/v/taper.svg?style=flat)](https://www.npmjs.org/package/taper)
 
 Taper (a fork of [`tapr`](https://github.com/jeffbski/tapper)) is a Node.js tap
 test runner which allows stdout and stderr mixed in with the tap output. Also
