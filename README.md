@@ -68,12 +68,13 @@ npm install
 
 ## Changelog
 
+ - v0.3.0 - 2014-10-21 - Add automated tests, fix error output with [substack/tape](/substack/tape), fix other bugs
  - v0.2.0 - 2014-10-04 - Add --timeout option, and fix for recent Node.js versions
  - v0.1.3 - 2011-12-14 - Switch to commander for option parsing
  - v0.1.2 - 2011-12-10 - improve readme and description
  - v0.1.1 - 2011-12-08 - change stdout/stderr to always output, not just for failed tests
- - v0.1.0 - 2011-11-28 - taper - change bin/taper to bin/taper for convenient typing. taper is also short for tap runner
- - v0.0.6 - 2011-11-22 - Taper is based on the original tap code with minor changes. The runner will evolve with features as time permits but appears to be fully functional.
+ - v0.1.0 - 2011-11-28 - tapr - change bin/tapper to bin/tapr for convenient typing. tapr is also short for tap runner
+ - v0.0.6 - 2011-11-22 - Tapper is based on the original tap code with minor changes. The runner will evolve with features as time permits but appears to be fully functional.
 
 ## Screenshots
 
