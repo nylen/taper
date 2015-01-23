@@ -1,7 +1,7 @@
 {
     "name"         : "taper",
     "description"  : "Taper (a fork of tapr) is a tap test runner that shows an appropriate level of detail with colorized output.",
-    "version"      : "0.3.0",
+    "version"      : "0.4.0",
     "author"       : "James Nylen <jnylen@gmail.com>",
     "contributors" : [
         "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
