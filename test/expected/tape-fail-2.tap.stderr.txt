@@ -12,6 +12,11 @@
 [32mok 11 (unnamed assert)[39m
 [32mok 12 (unnamed assert)[39m
 [31mnot ok 13 (unnamed assert)[39m
+    operator: ok
+    expected: true
+    actual:   false
+    at: IncomingMessage.<anonymous> (/node/somedir/test-fails-2.js:60:9)
+  ...
 [32mok 14 should be equal[39m
 [32mok 15 should be equal[39m
 [32mok 16 should be equal[39m
