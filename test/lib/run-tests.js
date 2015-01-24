@@ -4,41 +4,27 @@ var cp     = require('child_process'),
     concat = require('concat-stream'),
     fs     = require('fs'),
     path   = require('path'),
-    semver = require('semver'),
     tape   = require('tape');
 
 var bin = path.join(__dirname, '..', '..', 'bin', 'taper.js');
 
-var versionDirs = fs.readdirSync(path.join(__dirname, '..', 'expected')).filter(function(f) {
-    return /^v\d/.test(f) && semver.satisfies(process.version, f);
-});
+fs.readdir(path.join(__dirname, '..'), function(err, files) {
+    if (err) throw err;
 
-fs.readdirSync(path.join(__dirname, '..')).forEach(function(f) {
-    if (/\.(js|coffee|tap)$/.test(f)) {
-        processFile(path.join(__dirname, '..', f));
-    }
+    var toProcess = [];
+
+    files.forEach(function(f) {
+        if (/\.(js|coffee|tap)$/.test(f)) {
+            processFile(path.join(__dirname, '..', f));
+        }
+    });
 });
 
 function getExpectedFilename(f, k) {
-    var base = path.basename(f) + '.' + k + '.txt',
-        fn;
-
-    versionDirs.forEach(function(v) {
-        fn = path.join(
-            path.dirname(f), 'expected', v,
-            base);
-        if (!fs.existsSync(fn)) {
-            fn = null;
-        }
-    });
-
-    if (!fn) {
-        fn = path.join(
-            path.dirname(f), 'expected',
-            base)
-    }
-
-    return fn;
+    return path.join(
+        path.dirname(f),
+        'expected',
+        path.basename(f) + '.' + k + '.txt');
 }
 
 function removePathsAndLineNumbers(f, s) {

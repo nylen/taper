@@ -38,8 +38,7 @@
     },
     "devDependencies" : {
         "concat-stream" : "~1.4.6",
-        "tape"          : "~3.0.1",
-        "semver"        : "~4.1.0"
+        "tape"          : "~3.0.1"
     },
     "scripts" : {
         "test" : "node test/lib/run-tests.js"
