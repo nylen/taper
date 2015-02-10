@@ -2,33 +2,43 @@
 
 var sprintf = require('sprintf').sprintf;
 var clc = require('cli-color');
-var prog = require('commander');
+var path = require('path');
+var minimist = require('minimist');
 
-prog
-  .version(require('../package.json').version)
-  .usage('[options] <path ...>')
-  .option('--no-color', 'Run without colorization')
-  .option('--timeout [ms]' , 'Individual test file timeout (ms; default=10000)', 10000)
-  .option('--runner [executable]', 'Name of alternative executable to run test-files with')
-  .parse(process.argv);
+var VERSION = require('../package.json').version;
 
+var args = minimist(process.argv, {
+  default: { color: true, timeout: 10000 }
+, boolean: ['help', 'version']
+, string: ['runner']
+, alias: { h: 'help', V: 'version', color: 'colour'}
+});
+var argv = args._;
 
-if (!prog.args.length) { // no files specified, show help
-  process.stdout.write(prog.helpInformation());
-  prog.emit('--help');
+if (args.version) {
+  console.log(VERSION);
   process.exit(0);
 }
 
-var path = require("path");
+if (args.help || argv.length <= 2) {
+  var basename = path.basename(process.argv[1]);
+  console.log(
+    require('fs')
+      .readFileSync(__dirname+'/../doc/help.txt','utf-8')
+      .replace(/\$0/g, basename)
+      .trim());
+  process.exit(1);
+}
+
 var Runner = require("../lib/taper");
 var TapProducer = require("tap").Producer;
 
 var options = {
-  color: prog.color,
-  timeout: +prog.timeout || 10000,
-  runner: prog.runner };
-var r = new Runner(prog.args, options);
-var colorize = prog.color;
+  color: args.color,
+  timeout: +args.timeout,
+  runner: args.runner };
+var r = new Runner(argv[2], options);
+var colorize = args.color;
 
 r.on("file", function (file, results, details) {
   var s = (details.ok ? "" : "not ") + "ok "+results.name
