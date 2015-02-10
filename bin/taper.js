@@ -10,8 +10,9 @@ var VERSION = require('../package.json').version;
 var args = minimist(process.argv, {
   default: { color: true, timeout: 10000 }
 , boolean: ['help', 'version']
-, string: ['runner']
-, alias: { h: 'help', V: 'version', color: 'colour'}
+, string: ['runner', 'runner-param']
+, alias: { h: 'help', V: 'version', P: 'runner-param', color: 'colour'}
+, '--': true
 });
 var argv = args._;
 
@@ -30,14 +31,20 @@ if (args.help || argv.length <= 2) {
   process.exit(1);
 }
 
+if (typeof args['runner-param'] === 'string') {
+  args['runner-param'] = [args['runner-param']];
+}
+
 var Runner = require("../lib/taper");
 var TapProducer = require("tap").Producer;
 
 var options = {
   color: args.color,
   timeout: +args.timeout,
-  runner: args.runner };
-var r = new Runner(argv[2], options);
+  runner: args.runner,
+  params: (args['runner-param'] || []).concat(args['--']) };
+
+var r = new Runner(argv.slice(2), options);
 var colorize = args.color;
 
 r.on("file", function (file, results, details) {
