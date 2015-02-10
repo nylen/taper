@@ -9,6 +9,7 @@ prog
   .usage('[options] <path ...>')
   .option('--no-color', 'Run without colorization')
   .option('--timeout [ms]' , 'Individual test file timeout (ms; default=10000)', 10000)
+  .option('--runner [executable]', 'Name of alternative executable to run test-files with')
   .parse(process.argv);
 
 
@@ -22,7 +23,10 @@ var path = require("path");
 var Runner = require("../lib/taper");
 var TapProducer = require("tap").Producer;
 
-var options = { color: prog.color, timeout: +prog.timeout || 10000 };
+var options = {
+  color: prog.color,
+  timeout: +prog.timeout || 10000,
+  runner: prog.runner };
 var r = new Runner(prog.args, options);
 var colorize = prog.color;
 
